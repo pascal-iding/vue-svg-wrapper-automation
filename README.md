@@ -1,65 +1,178 @@
-# vue-svg-wrapper-automation README
+# Vue SVG Wrapper Automation
 
-This is the README for your extension "vue-svg-wrapper-automation". After writing up a brief description, we recommend including the following sections.
+A VS Code extension that automatically creates Vue.js wrapper components from SVG content in your clipboard.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+**Quick SVG to Vue Conversion**: Just ctrl + C an svg element and create a vue wrapper with one command  
+**Flexible Template Support**: Choose between Composition API and Options API, or use custom templates  
+**Configurable Output Directory**: Set where your Vue files are generated  
+**URL Support**: Automatically download and process SVG files from URLs  
+**Smart SVG Extraction**: Extract SVG elements from web pages when direct SVG links aren't available
 
-For example if there is an image subfolder under your extension project workspace:
+## Installation
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Install from the VS Code Marketplace
+2. Open a workspace containing Vue files (`.vue` files must be present for activation)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Usage
+
+### Basic Usage
+
+1. Copy SVG content to your clipboard (either raw SVG code or a URL to an SVG file)
+2. Use the keyboard shortcut: `Ctrl+Alt+Shift+S` (Windows/Linux) or `Cmd+Alt+Shift+S` (Mac)
+   - Or open the Command Palette (`Ctrl/Cmd + Shift + P`) and run: **"Svg to vue"**
+3. Enter a filename for your Vue component
+4. The extension will create a new `.vue` file with your SVG wrapped in a Vue component
+
+### Supported Input Types
+
+- **Raw SVG Code**: Direct SVG markup copied to clipboard
+- **SVG URLs**: Direct links to `.svg` files
+- **Web Pages**: URLs containing SVG elements (will attempt to extract the first SVG found)
+
+## Configuration
+
+Access settings via VS Code Settings (`Ctrl/Cmd + ,`) and search for "Vue SVG Wrapper":
+
+### `vueSvgWrapper.defaultDirectory`
+- **Type**: `string`
+- **Default**: `""` (workspace root)
+- **Description**: Directory where Vue files will be generated. Use paths relative to workspace root (e.g., `assets/icons/` or `./assets/otherIcons/`)
+
+### `vueSvgWrapper.useCompositionApi`
+- **Type**: `boolean`
+- **Default**: `true`
+- **Description**: Generate Composition API (`<script setup>`) or Options API components
+
+### `vueSvgWrapper.customTemplate`
+- **Type**: `string`
+- **Default**: `""` (use built-in template)
+- **Description**: Custom Vue template with placeholders:
+  - `{{SVG_CONTENT}}` - Replaced with the SVG content
+  - `{{COMPONENT_NAME}}` - Replaced with the component name
+
+## Generated Component Structure
+
+### Composition API (Default)
+```vue
+<template>
+  <div>
+    <!-- Your SVG content here -->
+  </div>
+</template>
+
+<script setup>
+// ComponentName component
+</script>
+
+<style scoped>
+
+</style>
+```
+
+### Options API
+```vue
+<template>
+  <div>
+    <!-- Your SVG content here -->
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ComponentName'
+};
+</script>
+
+<style scoped>
+
+</style>
+```
+
+## Custom Templates
+
+You can define your own template structure using the `vueSvgWrapper.customTemplate` setting:
+
+```vue
+<template>
+  <span class="icon">
+    {{SVG_CONTENT}}
+  </span>
+</template>
+
+<script setup>
+defineOptions({
+  name: '{{COMPONENT_NAME}}'
+})
+
+// Props, emits, etc.
+</script>
+
+<style scoped>
+.icon {
+  display: inline-block;
+}
+</style>
+```
+
+## Commands
+
+| Command | Keybinding | Description |
+|---------|------------|-------------|
+| `vueSvgWrapper.svgToVue` | `Ctrl+Alt+Shift+S` (`Cmd+Alt+Shift+S` on Mac) | Convert SVG from clipboard to Vue component |
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- VS Code 1.103.0 or higher
+- Workspace must contain Vue files (`.vue`) for extension activation
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- `vueSvgWrapper.defaultDirectory`: Set the default directory for generated Vue files
+- `vueSvgWrapper.useCompositionApi`: Choose between Composition API and Options API
+- `vueSvgWrapper.customTemplate`: Define a custom Vue component template
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- Extension only activates in workspaces containing `.vue` files
+- SVG extraction from complex web pages may not always succeed
+- Network requests for URL-based SVGs may timeout on slow connections
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
+Initial release with core functionality:
+- SVG to Vue component conversion
+- Clipboard and URL support
+- Configurable output directory
+- Composition/Options API support
+- Custom template system
 
-Initial release of ...
+## Contributing
 
-### 1.0.1
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests: `npm test`
+5. Submit a pull request
 
-Fixed issue #.
+## Development
 
-### 1.1.0
+```bash
+# Install dependencies
+npm install
 
-Added features X, Y, and Z.
+# Run tests
+npm test
 
----
+# Lint code
+npm run lint
+```
 
-## Working with Markdown
+## License
 
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+This extension is licensed under the MIT License.

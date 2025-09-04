@@ -10,15 +10,22 @@
     "Other"
   ],
   "activationEvents": [
-    "workspaceContains:**/*.vue",
-    "onLanguage:vue"
+    "workspaceContains:**/*.vue"
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
       {
         "command": "vueSvgWrapper.svgToVue",
-        "title": "Generate vue component from svg"
+        "title": "Svg to vue"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "vueSvgWrapper.svgToVue",
+        "key": "ctrl+alt+shift+s",
+        "mac": "cmd+alt+shift+s",
+        "when": "editorTextFocus"
       }
     ],
     "configuration": {
@@ -33,6 +40,11 @@
           "type": "boolean",
           "default": true,
           "description": "Will generate a composition api or options api component."
+        },
+        "vueSvgWrapper.customTemplate": {
+          "type": "string",
+          "description": "Custom Vue template to use. Use {{SVG_CONTENT}} as placeholder for the SVG content and {{COMPONENT_NAME}} for the component name. Leave empty to use default template.",
+          "editPresentation": "multilineText"
         }
       }
     }
