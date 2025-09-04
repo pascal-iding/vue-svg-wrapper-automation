@@ -12,9 +12,9 @@ suite('isValidSvg Test Suite', () => {
 	});
 
 	test('isValidSvg should return false for non-string input', () => {
-		assert.strictEqual(isValidSvg(123), false);
-		assert.strictEqual(isValidSvg({}), false);
-		assert.strictEqual(isValidSvg([]), false);
+		assert.strictEqual(isValidSvg(/** @type {any} */ (123)), false);
+		assert.strictEqual(isValidSvg(/** @type {any} */ ({})), false);
+		assert.strictEqual(isValidSvg(/** @type {any} */ ([])), false);
 	});
 
 	test('isValidSvg should return false for empty string', () => {

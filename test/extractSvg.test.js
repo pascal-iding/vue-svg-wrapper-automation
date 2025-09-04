@@ -34,6 +34,7 @@ suite('extractSvg Test Suite', () => {
 		assert.ok(typeof result === 'string');
 		assert.ok(result.includes('<svg'));
 		assert.ok(result.includes('</svg>'));
+		// TODO: isValidSvg should be true
 	});
 
 	test('extractSvg should handle timeout', async () => {

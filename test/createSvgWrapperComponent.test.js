@@ -6,6 +6,7 @@ suite('createSvgWrapperComponent Test Suite', () => {
 		assert.strictEqual(typeof createSvgWrapperComponent, 'function');
 	});
 
+	// TODO: Test if file was created
 	test('createSvgWrapperComponent should be async', () => {
 		const result = createSvgWrapperComponent('test', 'test.vue', '/test/test.vue');
 		assert.ok(result instanceof Promise || (result && 'then' in result && typeof (/** @type {any} */ (result)).then === 'function'));

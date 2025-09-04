@@ -8,6 +8,6 @@ suite('getVueFileContent Test Suite', () => {
 
 	test('getVueFileContent should be async', () => {
 		const result = getVueFileContent('TestComponent.vue');
-		assert.ok(result instanceof Promise || (result && typeof result.then === 'function'));
+		assert.ok(result instanceof Promise || (result && 'then' in result && typeof (/** @type {any} */ (result)).then === 'function'));
 	});
 });

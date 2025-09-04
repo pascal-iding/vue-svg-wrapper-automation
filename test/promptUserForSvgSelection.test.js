@@ -9,7 +9,7 @@ suite('promptUserForSvgSelection Test Suite', () => {
 	test('promptUserForSvgSelection should be async', () => {
 		const svgElements = ['<svg></svg>'];
 		const result = promptUserForSvgSelection(svgElements);
-		assert.ok(result instanceof Promise || (result && typeof result.then === 'function'));
+		assert.ok(result instanceof Promise || (result && 'then' in result && typeof (/** @type {any} */ (result)).then === 'function'));
 		
 		// Clean up by resolving the promise (this will likely fail in test environment)
 		result.catch(() => {});
@@ -17,7 +17,7 @@ suite('promptUserForSvgSelection Test Suite', () => {
 
 	test('promptUserForSvgSelection should handle empty array', () => {
 		const result = promptUserForSvgSelection([]);
-		assert.ok(result instanceof Promise || (result && typeof result.then === 'function'));
+		assert.ok(result instanceof Promise || (result && 'then' in result && typeof (/** @type {any} */ (result)).then === 'function'));
 		
 		// Clean up
 		result.catch(() => {});

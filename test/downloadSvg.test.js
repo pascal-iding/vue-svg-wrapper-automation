@@ -31,4 +31,7 @@ suite('downloadSvg Test Suite', () => {
 			assert.ok(error.message.includes('timeout') || error.message.includes('ENOTFOUND') || error.message.includes('network'));
 		}
 	}).timeout(10000);
+
+	// TODO: Should download direct link https://upload.wikimedia.org/wikipedia/commons/1/19/Unity_Technologies_logo.svg
+	// isValidSvg(downloadedcontent) should be true
 });

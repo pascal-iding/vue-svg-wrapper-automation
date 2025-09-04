@@ -10,4 +10,5 @@ suite('getSvgFromClipboard Test Suite', () => {
 		const result = getSvgFromClipboard();
 		assert.ok(result instanceof Promise || (result && 'then' in result && typeof (/** @type {any} */ (result)).then === 'function'));
 	});
+	//TODO: Simulate clipboard with valid svg element (Should return this element) and link (https://upload.wikimedia.org/wikipedia/commons/1/19/Unity_Technologies_logo.svg should retrun isValidSvg true)
 });
