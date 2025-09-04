@@ -1,7 +1,7 @@
 const vscode = require('vscode');
 const { downloadSvg } = require('./helpers/downloadSvg');
 const { isValidSvg } = require('./helpers/isValidSvg')
-const { extractSvg } = require('./helpers/extractSvg')
+const { extractSvg } = require('./helpers/extractSvg/extractSvg')
 
 /**
  * Either reads the svg from the clipboard or downloads it from a link.
