@@ -5,10 +5,10 @@
  */
 function cleanSvg(svgString) {
   return svgString
-    .replace(/\s+class="[^"]*"/gi, '')
-    .replace(/\s+id="[^"]*"/gi, '')
-    .replace(/\s+class='[^']*'/gi, '')
-    .replace(/\s+id='[^']*'/gi, '');
+      .replace(/\s+class="[^"]*"/gi, '')
+      .replace(/\s+id="[^"]*"/gi, '')
+      .replace(/\s+class='[^']*'/gi, '')
+      .replace(/\s+id='[^']*'/gi, '');
 }
 
-module.exports = { cleanSvg }
+module.exports = {cleanSvg};

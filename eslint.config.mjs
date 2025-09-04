@@ -1,4 +1,5 @@
 import globals from "globals";
+import google from "eslint-config-google";
 
 export default [{
     files: ["**/*.js"],
@@ -7,7 +8,8 @@ export default [{
         ".vscode-test/**",
         "out/**",
         "dist/**",
-        "coverage/**"
+        "coverage/**",
+        "test/**"
     ],
     languageOptions: {
         globals: {
@@ -15,18 +17,13 @@ export default [{
             ...globals.node,
             ...globals.mocha,
         },
-
         ecmaVersion: 2022,
         sourceType: "commonjs",
     },
-
     rules: {
-        "no-const-assign": "warn",
-        "no-this-before-super": "warn",
-        "no-undef": "warn",
-        "no-unreachable": "warn",
-        "no-unused-vars": "warn",
-        "constructor-super": "warn",
-        "valid-typeof": "warn",
+        ...google.rules,
+        // Override specific Google rules if needed
+        "require-jsdoc": "off", // Often too strict for simple functions
+        "valid-jsdoc": "off",   // Can be overly pedantic
     },
 }];

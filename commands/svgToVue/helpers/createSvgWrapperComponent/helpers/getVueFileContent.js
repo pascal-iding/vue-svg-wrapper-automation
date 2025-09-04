@@ -1,4 +1,5 @@
-const { getSvgFromClipboard } = require('./helpers/getSvgFromClipboard/getSvgFromClipboard.js');
+const {getSvgFromClipboard} =
+  require('./helpers/getSvgFromClipboard/getSvgFromClipboard.js');
 
 const path = require('path');
 const vscode = require('vscode');
@@ -19,22 +20,22 @@ async function getVueFileContent(fileName) {
   const config = vscode.workspace.getConfiguration('vueSvgWrapper');
   const useCompositionApi = config.get('useCompositionApi', true);
   const customTemplate = config.get('customTemplate', '');
-  
+
   const componentName = path.basename(fileName, '.vue');
 
   if (customTemplate.trim()) {
     return customTemplate
-      .replace(/\{\{SVG_CONTENT\}\}/g, svgContent)
-      .replace(/\{\{COMPONENT_NAME\}\}/g, componentName);
+        .replace(/\{\{SVG_CONTENT\}\}/g, svgContent)
+        .replace(/\{\{COMPONENT_NAME\}\}/g, componentName);
   }
 
   const templateContent = `  <div>
     ${svgContent}
   </div>`;
 
-  const scriptContent = useCompositionApi
-    ? generateCompositionApiScript(componentName)
-    : generateOptionsApiScript(componentName);
+  const scriptContent = useCompositionApi ?
+    generateCompositionApiScript(componentName) :
+    generateOptionsApiScript(componentName);
 
   return `<template>
 ${templateContent}
@@ -62,4 +63,4 @@ export default {
 </script>`;
 }
 
-module.exports = { getVueFileContent };
+module.exports = {getVueFileContent};

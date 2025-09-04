@@ -1,20 +1,22 @@
 const path = require('path');
-const { getTargetDirectory } = require('./helpers/getTargetDirectory');
-const { getFilename } = require('./helpers/getFilename');
-const { createSvgWrapperComponent } = require('./helpers/createSvgWrapperComponent/createSvgWrapperComponent');
+const {getTargetDirectory} = require('./helpers/getTargetDirectory');
+const {getFilename} = require('./helpers/getFilename');
+const {createSvgWrapperComponent} = require(
+    './helpers/createSvgWrapperComponent/createSvgWrapperComponent',
+);
 
 /**
  * Creates a new Vue file with the specified filename and the clipboard content
  */
 async function svgToVueCommand() {
-	const filename = await getFilename();
+  const filename = await getFilename();
 
-	if (!filename) return;
+  if (!filename) return;
 
-	const targetDirectory = getTargetDirectory();
-	const completeFilePath = path.join(targetDirectory, filename);
+  const targetDirectory = getTargetDirectory();
+  const completeFilePath = path.join(targetDirectory, filename);
 
-	createSvgWrapperComponent(targetDirectory, filename, completeFilePath)
+  createSvgWrapperComponent(targetDirectory, filename, completeFilePath);
 }
 
-module.exports = { svgToVueCommand };
+module.exports = {svgToVueCommand};

@@ -9,9 +9,9 @@ const vscode = require('vscode');
 async function getFilename() {
   const filename = await vscode.window.showInputBox({
     prompt: 'Enter filename for the new Vue file',
-    placeHolder: 'MySvg'
+    placeHolder: 'MySvg',
   });
-  
+
   if (!filename || filename.trim() === '') {
     return null;
   }
@@ -19,4 +19,4 @@ async function getFilename() {
   return filename.endsWith('.vue') ? filename : `${filename}.vue`;
 }
 
-module.exports = { getFilename }
+module.exports = {getFilename};

@@ -8,13 +8,13 @@ const vscode = require('vscode');
 async function promptUserForSvgSelection(svgElements) {
   return new Promise((resolve) => {
     const panel = vscode.window.createWebviewPanel(
-      'svgSelection',
-      'Select SVG',
-      vscode.ViewColumn.One,
-      {
-        enableScripts: true,
-        retainContextWhenHidden: false
-      }
+        'svgSelection',
+        'Select SVG',
+        vscode.ViewColumn.One,
+        {
+          enableScripts: true,
+          retainContextWhenHidden: false,
+        },
     );
 
     // Generate SVG preview cards
@@ -23,20 +23,20 @@ async function promptUserForSvgSelection(svgElements) {
       const viewBoxMatch = svg.match(/viewBox="([^"]+)"/);
       const classMatch = svg.match(/class="([^"]+)"/);
       const idMatch = svg.match(/id="([^"]+)"/);
-      
+
       let title = `SVG ${index + 1}`;
       let details = '';
-      
+
       if (idMatch) {
         title = idMatch[1];
       } else if (classMatch) {
         title = classMatch[1];
       }
-      
+
       if (viewBoxMatch) {
         details = `ViewBox: ${viewBoxMatch[1]}`;
       }
-      
+
       return `
         <div class="svg-card" data-index="${index}">
           <div class="svg-preview">
@@ -127,7 +127,9 @@ async function promptUserForSvgSelection(svgElements) {
       <body>
         <h1>Select an SVG</h1>
         <div class="instructions">
-          Found ${svgElements.length} SVG element${svgElements.length > 1 ? 's' : ''} on this page. Click on one to select it for your Vue component.
+          Found ${svgElements.length} SVG element${
+            svgElements.length > 1 ? 's' : ''
+} on this page. Click on one to select it for your Vue component.
         </div>
         <div class="svg-grid">
           ${svgCards}
@@ -160,4 +162,4 @@ async function promptUserForSvgSelection(svgElements) {
   });
 }
 
-module.exports = { promptUserForSvgSelection }
+module.exports = {promptUserForSvgSelection};
