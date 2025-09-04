@@ -1,5 +1,4 @@
 const https = require('https');
-const http = require('http');
 
 /**
  * Downloads the content from given url and returns it as a string
@@ -8,7 +7,10 @@ const http = require('http');
  */
 async function downloadSvg(url) {
   return new Promise((resolve, reject) => {
-    const client = url.startsWith('https:') ? https : http;
+    if (!url.startsWith('https:')) {
+      reject(new Error('Only HTTPS URLs are allowed for security reasons'));
+      return;
+    }
     
     const options = {
       headers: {
@@ -19,7 +21,7 @@ async function downloadSvg(url) {
       }
     };
     
-    const request = client.get(url, options, (response) => {
+    const request = https.get(url, options, (response) => {
       if (response.statusCode !== 200) {
         reject(new Error(`Failed to download SVG: HTTP ${response.statusCode}`));
         return;

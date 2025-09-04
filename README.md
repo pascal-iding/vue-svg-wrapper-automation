@@ -52,6 +52,11 @@ Access settings via VS Code Settings (`Ctrl/Cmd + ,`) and search for "Vue SVG Wr
   - `{{SVG_CONTENT}}` - Replaced with the SVG content
   - `{{COMPONENT_NAME}}` - Replaced with the component name
 
+### `vueSvgWrapper.allowDownloadWithHTTPS`
+- **Type**: `boolean`
+- **Default**: `true`
+- **Description**: Allow downloading SVGs from HTTPS URLs. When disabled, only clipboard content will be used (URLs will be rejected)
+
 ## Generated Component Structure
 
 ### Composition API (Default)
@@ -134,6 +139,7 @@ This extension contributes the following settings:
 - `vueSvgWrapper.defaultDirectory`: Set the default directory for generated Vue files
 - `vueSvgWrapper.useCompositionApi`: Choose between Composition API and Options API
 - `vueSvgWrapper.customTemplate`: Define a custom Vue component template
+- `vueSvgWrapper.allowDownloadWithHTTPS`: Allow downloading SVGs from HTTPS URLs
 
 ## Known Issues
 

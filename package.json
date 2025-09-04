@@ -46,6 +46,11 @@
           "type": "string",
           "description": "Custom Vue template to use. Use {{SVG_CONTENT}} as placeholder for the SVG content and {{COMPONENT_NAME}} for the component name. Leave empty to use default template.",
           "editPresentation": "multilineText"
+        },
+        "vueSvgWrapper.allowDownloadWithHTTPS": {
+          "type": "boolean",
+          "default": true,
+          "description": "Allow downloading SVGs from HTTPS URLs. When disabled, only clipboard content will be used."
         }
       }
     }

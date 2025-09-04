@@ -32,6 +32,14 @@ async function getSvgFromClipboard() {
       throw Error('Not a valid svg element or link to svg file');
     }
 
+    // Check if downloading from HTTPS URLs is allowed
+    const config = vscode.workspace.getConfiguration('vueSvgWrapper');
+    const allowDownloadWithHTTPS = config.get('allowDownloadWithHTTPS', true);
+    
+    if (!allowDownloadWithHTTPS) {
+      throw Error('Downloading from URLs is disabled. Please paste SVG content directly or enable "Allow Download With HTTPS" in settings.');
+    }
+
     try {
       const downloadedContent = (await downloadSvg(trimmedContent)).trim();
       
