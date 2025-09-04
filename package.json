@@ -50,7 +50,7 @@
     }
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint extension.js 'commands/**/*.js' 'test/*.js'",
     "pretest": "npm run lint",
     "test": "vscode-test"
   },

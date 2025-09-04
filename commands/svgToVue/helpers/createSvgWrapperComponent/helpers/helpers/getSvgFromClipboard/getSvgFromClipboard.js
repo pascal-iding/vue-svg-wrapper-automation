@@ -46,6 +46,9 @@ async function getSvgFromClipboard() {
         if (extractedSvg && isValidSvg(extractedSvg)) {
           vscode.window.showInformationMessage('SVG extracted from webpage and validated successfully!');
           return extractedSvg;
+        } else if (extractedSvg === null) {
+          // User cancelled SVG selection
+          return null;
         } else {
           throw Error('Downloaded content does not contain a valid SVG');
         }

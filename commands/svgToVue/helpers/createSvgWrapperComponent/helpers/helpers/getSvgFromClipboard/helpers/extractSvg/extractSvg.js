@@ -31,7 +31,7 @@ async function extractSvg(content) {
       }
       
       promptUserForSvgSelection(matches).then(selectedSvg => {
-        resolve(cleanSvg(selectedSvg));
+        resolve(selectedSvg ? cleanSvg(selectedSvg) : null);
       }).catch(reject);
     } catch (error) {
       clearTimeout(timeoutId);

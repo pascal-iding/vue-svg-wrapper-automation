@@ -2,6 +2,13 @@ import globals from "globals";
 
 export default [{
     files: ["**/*.js"],
+    ignores: [
+        "node_modules/**",
+        ".vscode-test/**",
+        "out/**",
+        "dist/**",
+        "coverage/**"
+    ],
     languageOptions: {
         globals: {
             ...globals.commonjs,
@@ -10,7 +17,7 @@ export default [{
         },
 
         ecmaVersion: 2022,
-        sourceType: "module",
+        sourceType: "commonjs",
     },
 
     rules: {
