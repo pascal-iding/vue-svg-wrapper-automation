@@ -1,7 +1,7 @@
 const path = require('path');
 const { getTargetDirectory } = require('./helpers/getTargetDirectory');
 const { getFilename } = require('./helpers/getFilename');
-const { createSvgWrapperComponent } = require('./helpers/createSvgWrapperComponent');
+const { createSvgWrapperComponent } = require('./helpers/createSvgWrapperComponent/createSvgWrapperComponent');
 
 /**
  * Creates a new Vue file with the specified filename and the clipboard content

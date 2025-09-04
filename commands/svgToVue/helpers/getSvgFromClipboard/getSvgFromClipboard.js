@@ -1,7 +1,7 @@
 const vscode = require('vscode');
-const { downloadSvg } = require('./downloadSvg');
-const { isValidSvg } = require('./isValidSvg')
-const { extractSvg } = require('./extractSvg')
+const { downloadSvg } = require('./helpers/downloadSvg');
+const { isValidSvg } = require('./helpers/isValidSvg')
+const { extractSvg } = require('./helpers/extractSvg')
 
 /**
  * Either reads the svg from the clipboard or downloads it from a link.
@@ -20,28 +20,28 @@ async function getSvgFromClipboard() {
     
     const trimmedContent = clipboardContent.trim();
     
+    // Clipboard content is an svg element
     if (isValidSvg(trimmedContent)) {
       return trimmedContent;
     } 
     
     const isTrimmedContentLink = 
       trimmedContent.match(/^https?:\/\/.+/i);
-    vscode.window.showInformationMessage("is link: " + isTrimmedContentLink + trimmedContent)
 
     if (!isTrimmedContentLink) {
       throw Error('Not a valid svg element or link to svg file');
     }
 
-    vscode.window.showInformationMessage('Downloading SVG from URL...');
-
     try {
       const downloadedContent = (await downloadSvg(trimmedContent)).trim();
-      vscode.window.showInformationMessage(downloadedContent);
       
+      // Cliboard content is direct link to svg file
       if (isValidSvg(downloadedContent)) {
         vscode.window.showInformationMessage('SVG downloaded and validated successfully!');
         return downloadedContent;
-      } else {
+      }
+      // Cliboard is link to generic website
+      else {
         const extractedSvg = await extractSvg(downloadedContent);
         if (extractedSvg && isValidSvg(extractedSvg)) {
           vscode.window.showInformationMessage('SVG extracted from webpage and validated successfully!');

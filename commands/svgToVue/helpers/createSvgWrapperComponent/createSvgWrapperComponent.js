@@ -1,6 +1,6 @@
 const fs = require('fs');
 const vscode = require('vscode');
-const { getVueFileContent } = require('./getVueFileContent');
+const { getVueFileContent } = require('./helpers/getVueFileContent');
 
 /**
  * Creates a .vue file at the specified file path and name.
