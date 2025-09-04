@@ -41,7 +41,7 @@ suite('createSvgWrapperComponent Test Suite', () => {
       const Module = require('module');
       const originalRequire = Module.prototype.require;
       Module.prototype.require = function(...args) {
-        if (id === 'vscode') {
+        if (args[0] === 'vscode') {
           return mockVscode;
         }
         return originalRequire.apply(this, args);
