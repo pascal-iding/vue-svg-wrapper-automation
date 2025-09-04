@@ -1,0 +1,35 @@
+const https = require('https');
+const http = require('http');
+
+async function downloadSvg(url) {
+  return new Promise((resolve, reject) => {
+    const client = url.startsWith('https:') ? https : http;
+    
+    const options = {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Accept': 'image/svg+xml,image/*,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Referer': 'https://www.google.com/'
+      }
+    };
+    
+    const request = client.get(url, options, (response) => {
+      if (response.statusCode !== 200) {
+        reject(new Error(`Failed to download SVG: HTTP ${response.statusCode}`));
+        return;
+      }
+      
+      let data = '';
+      response.on('data', chunk => data += chunk);
+      response.on('end', () => resolve(data));
+    }).on('error', err => reject(err));
+
+    request.setTimeout(5000, () => {
+      request.destroy();
+      reject(new Error('Request timeout: SVG download took longer than 5 seconds'));
+    });
+  });
+}
+
+module.exports = { downloadSvg }

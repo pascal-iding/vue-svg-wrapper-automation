@@ -1,7 +1,7 @@
 {
   "name": "vue-svg-wrapper-automation",
   "displayName": "Vue svg wrapper automation",
-  "description": "Copy an svg element or link to your clipboard and automatically generate a vue component that wraps the svg f ile",
+  "description": "Create a vue svg wrapper from your clipboard.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.103.0"
@@ -9,13 +9,33 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "workspaceContains:**/*.vue",
+    "onLanguage:vue"
+  ],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "vue-svg-wrapper-automation.helloWorld",
-      "title": "Hello World"
-    }]
+    "commands": [
+      {
+        "command": "vueSvgWrapper.svgToVue",
+        "title": "Generate vue component from svg"
+      }
+    ],
+    "configuration": {
+      "title": "Vue SVG Wrapper Automation",
+      "properties": {
+        "vueSvgWrapper.defaultDirectory": {
+          "type": "string",
+          "default": "",
+          "description": "The .vue file will be generated inside this directory. The workspace root is used by default (Empty value). You can set a path relative to your workspace root (eg. assets/icons/)."
+        },
+        "vueSvgWrapper.useCompositionApi": {
+          "type": "boolean",
+          "default": true,
+          "description": "Will generate a composition api or options api component."
+        }
+      }
+    }
   },
   "scripts": {
     "lint": "eslint .",
