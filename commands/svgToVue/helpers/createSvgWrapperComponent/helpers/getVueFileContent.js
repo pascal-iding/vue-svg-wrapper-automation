@@ -1,4 +1,4 @@
-const { getSvgFromClipboard } = require('./getSvgFromClipboard/getSvgFromClipboard.js');
+const { getSvgFromClipboard } = require('./helpers/getSvgFromClipboard/getSvgFromClipboard.js');
 
 const path = require('path');
 const vscode = require('vscode');
