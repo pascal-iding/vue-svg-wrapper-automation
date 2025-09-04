@@ -25,8 +25,8 @@ async function getSvgFromClipboard() {
     } 
     
     const isTrimmedContentLink = 
-      trimmedContent.match(/^https?:\/\/.*\.svg$/i) ||
-      trimmedContent.match(/^https?:\/\/.*\.(svg|png|jpg|jpeg)(\?.*)?$/i);
+      trimmedContent.match(/^https?:\/\/.+/i);
+    vscode.window.showInformationMessage("is link: " + isTrimmedContentLink + trimmedContent)
 
     if (!isTrimmedContentLink) {
       throw Error('Not a valid svg element or link to svg file');
@@ -36,12 +36,13 @@ async function getSvgFromClipboard() {
 
     try {
       const downloadedContent = (await downloadSvg(trimmedContent)).trim();
+      vscode.window.showInformationMessage(downloadedContent);
       
       if (isValidSvg(downloadedContent)) {
         vscode.window.showInformationMessage('SVG downloaded and validated successfully!');
         return downloadedContent;
       } else {
-        const extractedSvg = extractSvg(downloadedContent);
+        const extractedSvg = await extractSvg(downloadedContent);
         if (extractedSvg && isValidSvg(extractedSvg)) {
           vscode.window.showInformationMessage('SVG extracted from webpage and validated successfully!');
           return extractedSvg;

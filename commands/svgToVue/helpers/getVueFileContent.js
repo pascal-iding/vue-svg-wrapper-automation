@@ -3,7 +3,12 @@ const { getSvgFromClipboard } = require('./getSvgFromClipboard.js');
 const path = require('path');
 const vscode = require('vscode');
 
-
+/**
+ * Generates the .vue file content and returns it as a string.
+ * Wraps svg in options api, composition api or custom template component.
+ * @param {String} fileName - The name of the file, eg. MySvg.vue
+ * @returns - Null or the file content as stirng.
+ */
 async function getVueFileContent(fileName) {
   const svgContent = await getSvgFromClipboard();
 

@@ -1,7 +1,9 @@
 const vscode = require('vscode');
 
 /**
- * Prompts the user for a filename
+ * Prompts the user for a filename.
+ * The user can enter a name with or without .vue ending.
+ * If the user doesn't use .vue, it will be appended automatically.
  * @returns 
  */
 async function getFilename() {

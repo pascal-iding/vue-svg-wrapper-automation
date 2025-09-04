@@ -1,6 +1,11 @@
 const https = require('https');
 const http = require('http');
 
+/**
+ * Downloads the content from given url and returns it as a string
+ * @param {String} url 
+ * @returns Content of that url
+ */
 async function downloadSvg(url) {
   return new Promise((resolve, reject) => {
     const client = url.startsWith('https:') ? https : http;

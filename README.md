@@ -154,6 +154,10 @@ Initial release with core functionality:
 
 ## Contributing
 
+Contributions are welcome.
+Use [Github](https://github.com/pascal-iding/vue-svg-wrapper-automation) issues if you have suggestions or problems.
+Consider leaving a star on [Github](https://github.com/pascal-iding/vue-svg-wrapper-automation) to support this project.
+
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes

@@ -4,7 +4,7 @@ const { getFilename } = require('./helpers/getFilename');
 const { createSvgWrapperComponent } = require('./helpers/createSvgWrapperComponent');
 
 /**
- * Creates a new Vue file with the specified filename
+ * Creates a new Vue file with the specified filename and the clipboard content
  */
 async function svgToVueCommand() {
 	const filename = await getFilename();

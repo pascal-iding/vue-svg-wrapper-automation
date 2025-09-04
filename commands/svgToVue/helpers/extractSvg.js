@@ -1,3 +1,9 @@
+
+/**
+ * Trys to extract an svg element from a webpage/HTML page.
+ * @param {String} content - HTML of a website
+ * @returns Null or the svg as string
+ */
 async function extractSvg(content) {
   if (!content || typeof content !== 'string') return null;
   

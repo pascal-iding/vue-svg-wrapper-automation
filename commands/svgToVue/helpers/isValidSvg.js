@@ -1,3 +1,9 @@
+
+/**
+ * Checks if a string is an svg element.
+ * @param {String} content
+ * @returns True if content is an svg, else false
+ */
 function isValidSvg(content) {
   if (!content || typeof content !== 'string') return false;
   const trimmed = content.trim();
