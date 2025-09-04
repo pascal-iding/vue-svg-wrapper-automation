@@ -1,5 +1,6 @@
 const assert = require('assert');
 const { extractSvg } = require('../commands/svgToVue/helpers/createSvgWrapperComponent/helpers/helpers/getSvgFromClipboard/helpers/extractSvg/extractSvg');
+const { isValidSvg } = require('../commands/svgToVue/helpers/createSvgWrapperComponent/helpers/helpers/getSvgFromClipboard/helpers/isValidSvg');
 
 suite('extractSvg Test Suite', () => {
 	test('extractSvg should be a function', () => {
@@ -34,7 +35,7 @@ suite('extractSvg Test Suite', () => {
 		assert.ok(typeof result === 'string');
 		assert.ok(result.includes('<svg'));
 		assert.ok(result.includes('</svg>'));
-		// TODO: isValidSvg should be true
+		assert.ok(isValidSvg(result), 'Extracted SVG should be valid according to isValidSvg');
 	});
 
 	test('extractSvg should handle timeout', async () => {
