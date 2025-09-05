@@ -9,7 +9,7 @@ const vscode = require('vscode');
 async function getFilename() {
   const filename = await vscode.window.showInputBox({
     prompt: 'Enter filename for the new Vue file',
-    placeHolder: 'MySvg',
+    placeHolder: 'MySvgName',
   });
 
   if (!filename || filename.trim() === '') {

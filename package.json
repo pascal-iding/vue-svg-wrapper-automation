@@ -3,6 +3,7 @@
   "displayName": "Vue svg wrapper automation",
   "description": "Create a vue svg wrapper from your clipboard.",
   "version": "0.0.1",
+  "icon": "icon.png",
   "engines": {
     "vscode": "^1.103.0"
   },
@@ -11,14 +12,15 @@
     "Other"
   ],
   "activationEvents": [
-    "workspaceContains:**/*.vue"
+    "onLanguage:vue"
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
       {
         "command": "vueSvgWrapper.svgToVue",
-        "title": "Svg to vue"
+        "title": "Svg to vue",
+        "enablement": "workspaceFolderCount > 0"
       }
     ],
     "keybindings": [
@@ -26,7 +28,7 @@
         "command": "vueSvgWrapper.svgToVue",
         "key": "ctrl+alt+shift+s",
         "mac": "cmd+alt+shift+s",
-        "when": "editorTextFocus"
+        "when": "workspaceFolderCount > 0"
       }
     ],
     "configuration": {
