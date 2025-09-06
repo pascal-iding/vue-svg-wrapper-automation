@@ -3,6 +3,11 @@
   "displayName": "Vue svg wrapper automation",
   "description": "Create a vue svg wrapper from your clipboard.",
   "version": "0.0.1",
+  "publisher": "mcpi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pascal-iding/vue-svg-wrapper-automation"
+  },
   "icon": "icon.png",
   "engines": {
     "vscode": "^1.103.0"
